@@ -6,8 +6,9 @@ A local desktop calculator by Hex & Roach, built with React, TypeScript, and Tau
 
 Feature-complete development checkpoint for the initial agreed scope.
 The latest recorded automated run passed 182 tests and the frontend build.
-Accessibility validation and final packaged regression testing remain incomplete.
-This is not a claim of general release readiness or cross-platform validation.
+The maintainer reports that the project is ready; final accessibility and packaged
+regression results have not been recorded in this README.
+This is not a claim of full accessibility compliance or cross-platform validation.
 
 ## Features
 
@@ -102,13 +103,13 @@ displayed amounts round to two decimals. Actual schedules may differ.
 
 Finance estimates are educational calculations, not financial advice.
 
-## Known validation gaps
+## Known limitations and validation notes
 
 - Full accessibility compliance has not been established.
 - Alternative color palettes are experimental.
-- Final packaged regression testing remains pending.
-- A GStreamer `appsink` warning was previously observed; resolution has not
-  been documented.
+- Final accessibility and packaged regression results are not documented here.
+- A GStreamer `appsink` warning was previously observed. The maintainer reports
+  that it no longer appears during current testing; the cause is unconfirmed.
 - Only the reported local Linux behavior has been checked; generated icons
   for other platforms do not establish support for those platforms.
 
@@ -117,4 +118,8 @@ Finance estimates are educational calculations, not financial advice.
 Source code, tests, configuration, lockfiles, and application artwork are included.
 Dependencies, local backups, build output, and installation packages are excluded.
 
-No project license has been selected yet.
+## License
+
+Chitralogic is licensed under the [MIT License](LICENSE).
+Copyright (c) 2026 Hex & Roach.
+Third-party dependencies and assets retain their respective licenses.
