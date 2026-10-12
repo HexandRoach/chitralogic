@@ -1,0 +1,53 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Chitralogic local exclusions
+
+# Dependencies and build output
+node_modules/
+dist/
+target/
+src-tauri/target/
+
+# Local backups and temporary files
+backups/
+*.backup-*
+*.before-*
+*.log
+*.tmp
+*~
+.DS_Store
+
+# Local credentials and environment files
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Generated installation packages
+*.AppImage
+*.deb
+*.rpm

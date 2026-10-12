@@ -1,0 +1,33 @@
+{
+  "name": "chitralogic",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "tauri": "tauri",
+    "test:calculator": "node --test tests/calculator.test.mjs",
+    "check:calculator": "npm run test:calculator && npm run build",
+    "test:learning": "node --test tests/calculator.test.mjs tests/practice.test.mjs",
+    "check:learning": "npm run test:learning && npm run build",
+    "test:all": "node --test tests/*.test.mjs",
+    "check:all": "npm run test:all && npm run build"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^2",
+    "@tauri-apps/plugin-opener": "^2",
+    "decimal.js": "^10.6.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@vitejs/plugin-react": "^6.0.2",
+    "typescript": "~6.0.3",
+    "vite": "^8.0.16"
+  }
+}

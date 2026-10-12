@@ -1,0 +1,485 @@
+:root {
+  font-family: system-ui, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+* { box-sizing: border-box; }
+body { margin: 0; }
+.app {
+  --bg: #15151d; --surface: #22222d; --control: #30303e;
+  --text: #f4f3fa; --muted: #c2bfce; --border: #777386;
+  --accent: #c9afff; --on-accent: #171021;
+  background: var(--bg); color: var(--text);
+  min-height: 100vh; padding: 24px;
+}
+.app[data-theme="ember"] { --accent: #ffc17a; --on-accent: #241404; }
+.app[data-theme="light"], .app[data-theme="system"] {
+  --bg: #f4f4f8; --surface: #fff; --control: #e9e8f0;
+  --text: #191923; --muted: #474452; --border: #77717f;
+  --accent: #50318e; --on-accent: #fff;
+}
+@media (prefers-color-scheme: dark) {
+  .app[data-theme="system"] {
+    --bg: #15151d; --surface: #22222d; --control: #30303e;
+    --text: #f4f3fa; --muted: #c2bfce; --border: #777386;
+    --accent: #c9afff; --on-accent: #171021;
+  }
+}
+.app[data-palette="protan"] { --accent: #ffe09b; --on-accent: #201900; }
+.app[data-palette="deutan"] { --accent: #b1d8ff; --on-accent: #071c30; }
+.app[data-palette="tritan"] { --accent: #ffd1e2; --on-accent: #30101c; }
+.app[data-theme="contrast"] {
+  --bg: #000; --surface: #000; --control: #101010;
+  --text: #fff; --muted: #fff; --border: #fff;
+  --accent: #fff; --on-accent: #000;
+}
+header, .result-row, .history-heading {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+}
+header, .panel, footer { max-width: 880px; margin-left: auto; margin-right: auto; }
+header { margin-bottom: 20px; }
+h1 { font-size: 1.8rem; margin: 4px 0; }
+h2 { font-size: 1.1rem; margin: 0; }
+.eyebrow, .hint, footer { color: var(--muted); font-size: .85rem; }
+.eyebrow { letter-spacing: .08em; margin: 0; }
+.badge { border: 1px solid var(--border); border-radius: 20px; padding: 6px 12px; }
+.panel { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px; margin-bottom: 16px; }
+label { display: block; font-weight: 600; }
+input, select, button {
+  font: inherit; color: var(--text); background: var(--control);
+  border: 1px solid var(--border); border-radius: 8px; padding: 10px;
+}
+input { width: 100%; margin-top: 8px; font-size: 1.2rem; }
+button { cursor: pointer; min-height: 44px; }
+button:hover:not(:disabled) { border-color: var(--text); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+:focus-visible { outline: 3px solid var(--text); outline-offset: 3px; }
+.primary { background: var(--accent); color: var(--on-accent); font-weight: 700; }
+output { font-size: 2rem; overflow-wrap: anywhere; min-width: 0; user-select: text; }
+.status { min-height: 2.5rem; padding: 10px 0; overflow-wrap: anywhere; }
+.keys { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.science { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; margin-top: 14px; }
+.mode { display: flex; align-items: center; gap: 12px; margin-top: 16px; }
+summary { cursor: pointer; font-weight: 600; padding: 4px; }
+.settings { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 18px; }
+.settings select { display: block; width: 100%; margin-top: 8px; }
+.history { padding: 0; list-style: none; }
+.history button { width: 100%; display: flex; justify-content: space-between; gap: 12px; text-align: left; margin-top: 8px; }
+.history span { overflow-wrap: anywhere; min-width: 0; }
+footer { padding-bottom: 10px; }
+@media (max-width: 540px) {
+  .app { padding: 12px; }
+  .science { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .settings { grid-template-columns: 1fr; }
+  .badge { display: none; }
+  .history button { flex-direction: column; }
+}
+
+/* Chitralogic dimensional styling v1 */
+.app {
+  background-image:
+    radial-gradient(ellipse at 15% 0%, rgba(150, 120, 220, .12), transparent 55%),
+    radial-gradient(ellipse at 100% 80%, rgba(100, 150, 210, .08), transparent 50%);
+}
+
+.panel {
+  border-radius: 20px;
+  border-top: 1px solid rgba(255, 255, 255, .24);
+  background-image: linear-gradient(
+    145deg, rgba(255, 255, 255, .055), rgba(0, 0, 0, .06)
+  );
+  box-shadow:
+    0 16px 30px rgba(0, 0, 0, .20),
+    0 4px 8px rgba(0, 0, 0, .14),
+    inset 0 1px 0 rgba(255, 255, 255, .12);
+}
+
+input {
+  border-radius: 12px;
+  padding: 15px;
+  background-image: linear-gradient(
+    180deg, rgba(0, 0, 0, .10), transparent
+  );
+  box-shadow:
+    inset 0 3px 7px rgba(0, 0, 0, .22),
+    inset 0 -1px 0 rgba(255, 255, 255, .08);
+}
+
+.result-row {
+  margin-top: 14px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--bg);
+  box-shadow:
+    inset 0 3px 8px rgba(0, 0, 0, .20),
+    0 1px 0 rgba(255, 255, 255, .08);
+}
+
+output {
+  font-variant-numeric: tabular-nums;
+  font-size: clamp(1.6rem, 5vw, 2.5rem);
+}
+
+button {
+  position: relative;
+  border-radius: 11px;
+  background-image: linear-gradient(
+    180deg, rgba(255, 255, 255, .10), rgba(0, 0, 0, .06)
+  );
+  box-shadow:
+    0 4px 0 rgba(0, 0, 0, .30),
+    0 6px 9px rgba(0, 0, 0, .18),
+    inset 0 1px 0 rgba(255, 255, 255, .20);
+  transition: transform 100ms ease, box-shadow 100ms ease;
+}
+
+button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow:
+    0 5px 0 rgba(0, 0, 0, .30),
+    0 8px 12px rgba(0, 0, 0, .20),
+    inset 0 1px 0 rgba(255, 255, 255, .24);
+}
+
+button:active:not(:disabled) {
+  transform: translateY(3px);
+  box-shadow:
+    0 1px 0 rgba(0, 0, 0, .30),
+    inset 0 2px 4px rgba(0, 0, 0, .18);
+}
+
+.keys {
+  gap: 12px;
+  padding-bottom: 4px;
+}
+
+.keys button {
+  min-height: 54px;
+  font-size: 1.05rem;
+  font-weight: 650;
+}
+
+.science {
+  gap: 12px;
+  padding-bottom: 4px;
+}
+
+.primary {
+  background-image: linear-gradient(
+    180deg, rgba(255, 255, 255, .16), rgba(0, 0, 0, .07)
+  );
+}
+
+select {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .12),
+    0 2px 4px rgba(0, 0, 0, .12);
+}
+
+.badge {
+  background: var(--surface);
+  box-shadow:
+    0 3px 6px rgba(0, 0, 0, .15),
+    inset 0 1px 0 rgba(255, 255, 255, .15);
+}
+
+/* Preserve explicit outlines instead of relying on shadows. */
+.app[data-theme="contrast"] {
+  background-image: none;
+}
+
+.app[data-theme="contrast"] .panel,
+.app[data-theme="contrast"] input,
+.app[data-theme="contrast"] .result-row,
+.app[data-theme="contrast"] button,
+.app[data-theme="contrast"] select,
+.app[data-theme="contrast"] .badge {
+  background-image: none;
+  box-shadow: none;
+  border: 2px solid var(--border);
+}
+
+.app[data-theme="contrast"] button {
+  transition: none;
+  transform: none;
+}
+
+.app[data-theme="contrast"] button:active:not(:disabled) {
+  outline: 3px solid var(--text);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  button {
+    transition: none;
+  }
+
+  button:hover:not(:disabled),
+  button:active:not(:disabled) {
+    transform: none;
+  }
+}
+
+@media (max-width: 540px) {
+  .result-row {
+    padding: 12px;
+    flex-wrap: wrap;
+  }
+
+  .keys {
+    gap: 10px;
+  }
+}
+
+/* Chitralogic expanded cosmetics v1 */
+.cosmetic-heading { margin-top: 24px; }
+.settings input[type="color"] {
+  width: 100%; height: 46px; padding: 4px; cursor: pointer;
+}
+.app[data-text-size="small"] { font-size: 14px; }
+.app[data-text-size="standard"] { font-size: 16px; }
+.app[data-text-size="large"] { font-size: 19px; }
+.app h1 { font-size: 1.8em; }
+.app h2 { font-size: 1.1em; }
+.app .hint, .app .eyebrow, .app footer { font-size: .85em; }
+.app input:not([type="color"]) { font-size: 1.2em; }
+.app output { font-size: 2.2em; }
+.app .keys button { font-size: 1.05em; }
+
+.app[data-shape="square"] button { border-radius: 4px; }
+.app[data-shape="rounded"] button { border-radius: 11px; }
+.app[data-shape="pill"] button { border-radius: 28px; }
+
+.app[data-density="compact"] .panel { padding: 12px; }
+.app[data-density="compact"] .keys,
+.app[data-density="compact"] .science { gap: 8px; }
+.app[data-density="compact"] .keys button { min-height: 44px; }
+.app[data-density="spacious"] .panel { padding: 24px; }
+.app[data-density="spacious"] .keys,
+.app[data-density="spacious"] .science { gap: 16px; }
+.app[data-density="spacious"] .keys button { min-height: 64px; }
+
+.app[data-finish="flat"] .panel,
+.app[data-finish="flat"] button,
+.app[data-finish="flat"] input,
+.app[data-finish="flat"] select,
+.app[data-finish="flat"] .result-row,
+.app[data-finish="flat"] .badge {
+  background-image: none;
+  box-shadow: none;
+}
+.app[data-finish="flat"] button:hover:not(:disabled),
+.app[data-finish="flat"] button:active:not(:disabled) {
+  transform: none;
+  box-shadow: none;
+}
+
+.app[data-finish="beveled"] .panel {
+  border-width: 2px;
+  box-shadow:
+    inset 2px 2px 0 rgba(255,255,255,.16),
+    inset -2px -2px 0 rgba(0,0,0,.24),
+    0 12px 24px rgba(0,0,0,.22);
+}
+.app[data-finish="beveled"] button {
+  box-shadow:
+    inset 2px 2px 0 rgba(255,255,255,.24),
+    inset -2px -2px 0 rgba(0,0,0,.25),
+    0 4px 0 rgba(0,0,0,.32);
+}
+.app[data-finish="beveled"] button:active:not(:disabled) {
+  box-shadow:
+    inset 2px 2px 0 rgba(0,0,0,.25),
+    inset -1px -1px 0 rgba(255,255,255,.16);
+}
+
+.app[data-motion="off"] button {
+  transition: none;
+}
+.app[data-motion="off"] button:hover:not(:disabled),
+.app[data-motion="off"] button:active:not(:disabled) {
+  transform: none;
+}
+.app[data-theme="contrast"] .panel,
+.app[data-theme="contrast"] button,
+.app[data-theme="contrast"] input,
+.app[data-theme="contrast"] select,
+.app[data-theme="contrast"] .result-row,
+.app[data-theme="contrast"] .badge {
+  background-image: none;
+  box-shadow: none;
+  border: 2px solid var(--border);
+}
+.app[data-theme="contrast"] button:hover:not(:disabled),
+.app[data-theme="contrast"] button:active:not(:disabled) {
+  transform: none;
+  box-shadow: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .app button { transition: none; }
+  .app button:hover:not(:disabled),
+  .app button:active:not(:disabled) { transform: none; }
+}
+@media (max-width: 540px) {
+  .app[data-density="spacious"] .panel { padding: 14px; }
+  .app[data-density="spacious"] .keys,
+  .app[data-density="spacious"] .science { gap: 10px; }
+}
+
+
+/* Chitralogic learning panel */
+.learning-toggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+.app .learning-toggle input {
+  width: 22px;
+  height: 22px;
+  margin: 0;
+  padding: 0;
+  flex: 0 0 auto;
+  box-shadow: none;
+}
+.learning-content { margin-top: 20px; }
+.worked-expression { overflow-wrap: anywhere; font-family: monospace; }
+.step-list { padding-left: 28px; }
+.step-list li { padding: 8px 0; overflow-wrap: anywhere; }
+.step-list span { font-weight: 650; }
+.lesson { margin-top: 20px; border-top: 1px solid var(--border); padding-top: 14px; }
+.lesson h2 { margin-top: 18px; }
+.lesson p { line-height: 1.6; }
+
+
+/* Chitralogic practice panel */
+.practice-content { margin-top: 20px; }
+.practice-content > label,
+.practice-content form > label {
+  display: block;
+  margin-bottom: 8px;
+}
+.practice-content select { max-width: 100%; }
+.practice-content h2 { margin-top: 22px; }
+.practice-content p { line-height: 1.6; }
+.practice-content form { margin-top: 18px; }
+.practice-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+.practice-feedback { min-height: 1.5em; }
+.practice-content [hidden] { display: none !important; }
+
+
+/* Chitralogic native controls and opening artwork */
+.app {
+  color-scheme: dark;
+}
+.app[data-theme="light"],
+.app[data-theme="system"] {
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  .app[data-theme="system"] {
+    color-scheme: dark;
+  }
+}
+.app select,
+.app select option,
+.app select optgroup {
+  color: var(--text);
+  background-color: var(--control);
+}
+.app select {
+  background-image: none;
+}
+.app select option:checked {
+  color: var(--on-accent);
+  background-color: var(--accent);
+}
+.app input[type="checkbox"],
+.app input[type="radio"],
+.app input[type="range"] {
+  accent-color: var(--accent);
+}
+.opening-art {
+  max-width: 880px;
+  margin: 0 auto 20px;
+}
+.opening-art img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+}
+@media (forced-colors: active) {
+  .app select,
+  .app select option,
+  .app select optgroup {
+    color: CanvasText;
+    background-color: Canvas;
+  }
+}
+
+/* Keep hidden mode controls hidden despite flex/grid rules. */
+.app [hidden] { display: none !important; }
+
+
+/* Chitralogic word problems */
+.word-content { margin-top: 20px; }
+.word-content label { margin: 14px 0 8px; }
+.word-content select { max-width: 100%; }
+.word-content textarea {
+  display: block;
+  width: 100%;
+  resize: vertical;
+  min-height: 110px;
+  font: inherit;
+  color: var(--text);
+  background: var(--control);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px;
+}
+.word-content h2 { margin-top: 20px; }
+.word-content p,
+.word-content li { line-height: 1.6; }
+.word-content li { padding: 4px 0; }
+.word-content form > button { margin-top: 16px; }
+
+
+/* Chitralogic Finance */
+.finance-content { margin-top: 18px; }
+.finance-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin: 18px 0;
+}
+.finance-fields input,
+.finance-fields select {
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+}
+.finance-results > div {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+.finance-results dd {
+  margin: 6px 0 0;
+  font-size: 1.25em;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+.finance-content p,
+.finance-content li { line-height: 1.6; }
+.finance-content li { padding: 5px 0; overflow-wrap: anywhere; }
+.finance-content .lesson h2 { margin-top: 18px; }
+@media (max-width: 540px) {
+  .finance-fields { grid-template-columns: 1fr; }
+}
